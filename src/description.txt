@@ -1,0 +1,40 @@
+Публикация на GitHub
+
+без API_KEY (не нужен)
+1. устноваить - npm i gh-pages --save-dev
+2. в packege.json:
+        добавляется - "gh-pages": "^6.3.0",
+        и самим добавить - "homepage": "https://GrNata.github.io/showcase_shop_react_vite/"
+        добавить скрипт для деплоя:
+            "scripts": {
+                          "predeploy": "npm run build",
+                          "deploy": "gh-pages -d dist"     (dist?? или build??)
+                        }
+3. Финальные шаги
+               - Соберите и задеплойте проект
+
+                   npm run deploy
+
+               - Проверьте GitHub Pages
+                 Перейдите в Settings → Pages вашего репозитория и убедитесь, что деплой прошел успешно.
+                 Теперь ваш Vite-проект будет доступен по адресу:
+
+                 https://GrNata.github.io/showcase_shop_react_vite/
+4.
+Если не пошло обновить vite.config.js:
+проблема с Vite и GitHub Pages, потому что Vite по умолчанию
+использует абсолютные пути (/assets/...), а GitHub Pages требует относительных.
+
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+
+export default defineConfig({
+  plugins: [react()],
+  base: '/showcase_shop_react_vite/', // 👈 Добавь этот base-путь
+});
+
+rm -rf dist - для windows (cmd): rmdir /s /q dist   или  rimraf dist; - PowerShell - Remove-Item -Recurse -Force dist
+
+npm run build
+npm run deploy
+

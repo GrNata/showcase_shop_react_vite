@@ -21,6 +21,8 @@ function Shop({
     const [loading, setLoading] = useState(true);
     const [searchProduct, setSearchProduct] = useState('');
 
+    console.log('SHOP goods - ', goods)
+
 
     const handelSearchGoods = async (input) => {
         const query = typeof input === 'string' ? input.toLowerCase() : input.target.value.toLowerCase();
@@ -32,14 +34,22 @@ function Shop({
         setSearchProduct('');
     };
 
-    useEffect(() => async function getProducts() {
-        const {products, total} = await fetchAllProducts();
-        setGoods(products);
-        setTotalPosition(total);
-        setLoading(false);
+    useEffect(() => {
+        async function getProducts() {
+            try {
+                const { products, total } = await fetchAllProducts();
+                setGoods(products);
+                setTotalPosition(total);
+                setLoading(false);
+                console.log('total - ', total);
+                console.log('goods - ', products);
+            } catch (error) {
+                console.error("Ошибка загрузки данных (useEffect Shop.jsx):", error);
+                setLoading(false);
+            }
+    }
 
-        console.log('total - ', total)
-        console.log('goods - ', products)
+    getProducts();
 
     }, []);
 

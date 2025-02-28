@@ -12,6 +12,8 @@ export const GoodItem = ({
                         }) => {
     const {id, title, price, category, description, rating, images} = good;
 
+    console.log("GoodItem: Received good in GoodItem:", good);
+
     const [isExpanded, setIsExpanded] = useState(false);
 
     return (

@@ -21,6 +21,9 @@ function AppShop() {
     // const [chooseCategory, setChooseCategory] = useState('');
     const [categoriesList, setCategoriesList] = useState([]);
 
+    console.log("🔥 Рендер AppShop!");
+
+
     useEffect(() => {
         console.log('new goods - ', goods)
     }, [goods])
@@ -121,7 +124,7 @@ function AppShop() {
         });
 
         const allPriceCount = order.length === 0 ? 0 : order.reduce((sum, item) => sum + (Number(item.quantity) * Number(item.price) ), 0);
-        setAllPrice(allPriceCount);
+        setAllPrice(allPriceCount.toFixed2);
 
         let quantity = 0;
         if (order.length > 0 ) {
@@ -130,6 +133,7 @@ function AppShop() {
         setQuantityAll(quantity);
     }, [order]);
 
+    console.log("AppShop: Перед рендером Shop:", { goods, setGoods });
 
     return (
         <>
@@ -154,15 +158,17 @@ function AppShop() {
             {
                 alertTitle && <Alert title={alertTitle} closeAlert={closeAlert} />
             }
+
             <Shop
                 goods={goods}
                 setGoods={setGoods}
                 setOrder={setOrder}
-                  order={order}
-                  allPrice={allPrice}
-                  addToBasket={addToBasket}
-                  changeQuantity={changeQuantity}
-            />
+                order={order}
+                allPrice={allPrice}
+                addToBasket={addToBasket}
+                changeQuantity={changeQuantity}
+                    />
+
             <Footer />
         </>
     )

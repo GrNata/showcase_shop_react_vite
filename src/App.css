@@ -69,6 +69,9 @@
 
 .card {
   padding: 2rem;
+
+  display: block !important;
+  opacity: 1 !important;
 }
 .card-title {
   font-size: 18px;
