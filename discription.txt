@@ -1,0 +1,7 @@
+Витрина-магазина
+
+API - https://dummyjson.com/ - фейковый, ждя обучения
+
+(можно попробовать (бесплатно) - Amazon Product API – требует регистрацию, даёт доступ к карточкам товаров на Amazon)
+https://webservices.amazon.com/paapi5/documentation/play-around-using-scratchpad.html
+
