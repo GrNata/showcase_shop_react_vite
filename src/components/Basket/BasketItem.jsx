@@ -8,7 +8,8 @@ export const BasketItem = (props) => {
         price,
         quantity,
         deleteGoodFromOrder=Function.prototype,
-        changeQuantity=Function.prototype
+        incrementQuantity = Function.prototype,
+        decrementQuantity = Function.prototype
     } = props;
 
     // console.log('BasketItem props - ', props)
@@ -19,16 +20,18 @@ export const BasketItem = (props) => {
                 <div className="ms-2 me-auto w-100">
                     <div className="fw-bold">{title}</div>
                     <div className="d-flex justify-content-between align-items-center">
-                        <span>price: {price}$</span>
+                        <span>price: {price.toFixed(2)}$</span>
                         <div className="d-flex align-items-center gap-2">
-                            <button type="button" className="btn btn-light cursor-pointer" onClick={() => changeQuantity(id, 'minus')}>-</button>
+                            {/*<button type="button" className="btn btn-light cursor-pointer" onClick={() => changeQuantity(id, 'minus')}>-</button>*/}
+                            <button type="button" className="btn btn-light cursor-pointer" onClick={() => decrementQuantity(id)}>-</button>
                             <span>{quantity}</span>
-                            <button type="button" className="btn btn-light cursor-pointer" onClick={() => changeQuantity(id, 'plus')}>+</button>
+                            {/*<button type="button" className="btn btn-light cursor-pointer" onClick={() => changeQuantity(id, 'plus')}>+</button>*/}
+                            <button type="button" className="btn btn-light cursor-pointer" onClick={() => incrementQuantity(id)}>+</button>
                         </div>
                     </div>
 
                 </div>
-                <span className="badge rounded-pill price-quantity">{+price * +quantity}$</span>
+                <span className="badge rounded-pill price-quantity">{(+price * +quantity).toFixed(2)}$</span>
                 <img
                     className="bi bi-archive-fill basket-icon-delete cursor-pointer"
                     src={delete_good}

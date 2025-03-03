@@ -7,7 +7,8 @@ export const BasketList = (props) => {
         quantityAll,
         allPrice,
         deleteGoodFromOrder=Function.prototype,
-        changeQuantity=Function.prototype
+        incrementQuantity,
+        decrementQuantity
     } = props;
 
 
@@ -28,7 +29,8 @@ export const BasketList = (props) => {
                         key={item.id} {...item}
                         handelBasketShow={handelBasketShow}
                         deleteGoodFromOrder={deleteGoodFromOrder}
-                        changeQuantity={changeQuantity}
+                        incrementQuantity={incrementQuantity}
+                        decrementQuantity={decrementQuantity}
                     />
                 )) : (
                     <>

@@ -10,12 +10,11 @@ function Shop({
                   setGoods,
                   setOrder,
                   order,
-                  // allPrice = 0,
                   addToBasket=Function.prototype,
-                  changeQuantity
+                  incrementQuantity,
+                  decrementQuantity
               }) {
 
-    // const [goods, setGoods] = useState([]);
     // количество загруженного товара (размер goods)
     const [totalPosition, setTotalPosition] = useState(0);
     const [loading, setLoading] = useState(true);
@@ -23,6 +22,7 @@ function Shop({
 
 
     const handelSearchGoods = async (input) => {
+        setLoading(true);
         const query = typeof input === 'string' ? input.toLowerCase() : input.target.value.toLowerCase();
         console.log('search product - ', query);
         const searchGoods = await fetchSearchProducts(query);
@@ -30,22 +30,21 @@ function Shop({
 
         setGoods(searchGoods.products);
         setSearchProduct('');
+        setLoading(false);
     };
 
+    // первоначальная загрузка товаров
     useEffect(() => async function getProducts() {
         const {products, total} = await fetchAllProducts();
         setGoods(products);
         setTotalPosition(total);
         setLoading(false);
 
-        console.log('total - ', total)
-        console.log('goods - ', products)
+        // console.log('total - ', total)
+        // console.log('goods - ', products)
 
     }, []);
 
-    // useEffect(() => {
-    //     setSearchProduct('');
-    // }, [goods])
 
     return (
         <main className='container-fluid shop-container'>
@@ -58,7 +57,8 @@ function Shop({
                             setOrder={setOrder}
                             order={order}
                             addToBasket={addToBasket}
-                            changeQuantity={changeQuantity}
+                            incrementQuantity={incrementQuantity}
+                            decrementQuantity={decrementQuantity}
                         />
                     </>
                     )

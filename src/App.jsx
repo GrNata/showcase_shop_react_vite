@@ -22,8 +22,8 @@ function App() {
 
   return (
     <>
-        {isAuthenticated ? <AppShop /> : <LoginForm onLogin={handlerLogin} />}
-        {/*<AppShop />*/}
+        {/*{isAuthenticated ? <AppShop /> : <LoginForm onLogin={handlerLogin} />}*/}
+        <AppShop />
 
     </>
   )

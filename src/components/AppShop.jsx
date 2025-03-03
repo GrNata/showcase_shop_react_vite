@@ -13,10 +13,10 @@ function AppShop() {
     const [isBasketShow, setIsBasketShow] = useState(false);
     const [quantityAll, setQuantityAll] = useState(0);
     const [allPrice, setAllPrice] = useState(0);
-    const [isDeleteBasketItem, setIsDeleteBasketItem] = useState(false);
+    // const [isDeleteBasketItem, setIsDeleteBasketItem] = useState(false);
     const [reciveId, setReciveId] = useState(0);
-    const [isChangeQuantity, setIsChangeQuantity] = useState(false);
-    const [action, setAction] = useState('');
+    // const [isChangeQuantity, setIsChangeQuantity] = useState(false);
+    // const [action, setAction] = useState('');
     const [alertTitle, setAlertTitle] = useState('');
     // const [chooseCategory, setChooseCategory] = useState('');
     const [categoriesList, setCategoriesList] = useState([]);
@@ -43,10 +43,6 @@ function AppShop() {
                     item.id === id ? {...item, quantity: item.quantity + 1} : item
                 );
             } else {
-                // для подсказки
-                setAlertTitle(title);
-                // Если товара нет, добавляем новый
-                // return [...prevOrder, {id, title, price, quantity: 1, isInBasket: true}];
                 return [...prevOrder, {id, title, price, quantity: 1}];
             }
         });
@@ -60,74 +56,58 @@ function AppShop() {
 
     // Удаление товара из заказа
     const deleteGoodFromOrder = (id) => {
-        setReciveId(id)
-        setIsDeleteBasketItem(!isDeleteBasketItem);
+        const newOrder = order.filter(item => item.id !== id);
+        setOrder(newOrder !== undefined ? newOrder : order);
     }
 
     // Изменение количества товара в заказе
-    const changeQuantity = (id, operation) => {
-        // console.log('changeQuantity id - ', id, ' operation - ', operation)
-        setReciveId(id);
-        setAction(operation);
-        setIsChangeQuantity(!isChangeQuantity);
+    // const changeQuantity = (id, operation) => {
+    //     // console.log('changeQuantity id - ', id, ' operation - ', operation)
+    //     setReciveId(id);
+    //     setAction(operation);
+    //     setIsChangeQuantity(!isChangeQuantity);
+    // }
+
+    const incrementQuantity = (id) => {
+        setOrder(prevOrder => {
+            // Если есть, создаём новый массив с обновлённым количеством
+            return prevOrder.map(item =>
+                item.id === id ? {...item, quantity: item.quantity + 1} : item
+            );
+        });
     }
 
-    // Изменения количества товара в корзине
-    useEffect(() => {
-        // console.log('change quantity id', - action)
-        if (action === '') return;
-        const findOrder = order.filter(item => item.id === reciveId);
-        // console.log('findOrder - ', findOrder, ', id - ', findOrder[0].id)
-        // if (action === 'plus') {
-            setOrder(prevOrder => {
-
-                if (action === 'plus') {
-                    // Если есть, создаём новый массив с обновлённым количеством
-                    return prevOrder.map(item =>
-                        item.id === findOrder[0].id ? {...item, quantity: item.quantity + 1} : item
-                    );
-                }
-                if (action === 'minus') {
-                    // Если есть, создаём новый массив с обновлённым количеством
-                    return prevOrder.map(item =>
-                        item.id === findOrder[0].id ? {...item, quantity: item.quantity - 1} : item
-                    );
-                }
-            });
-
-        setAction('');
-
-    }, [isChangeQuantity]);
-
-    // Удаление товара из корзины
-    useEffect(() => {
-        // console.log('delete id - ', reciveId )
-        const newOrder = order.filter(item => item.id !== reciveId);
-        setOrder(newOrder !== undefined ? newOrder : order);
-    }, [isDeleteBasketItem]);
-
-    // При добавление товара в корзину - подсчет общего количества и всей суммы заказа
-    useEffect(() => {
-        // console.log('alertTitle - ', alertTitle)
-
-        // проверка на < 0 количество товара в заказе, если да удалить
-        order.map(item => {
-            // if (item.quantity < 0) {
-            if (item.quantity <= 0) {
-                // console.log('delete in basked id - ', item.id)
-                setReciveId(item.id);
-                setIsDeleteBasketItem(!isDeleteBasketItem);
-            }
+    const decrementQuantity = (id) => {
+        setOrder(prevOrder => {
+            return prevOrder.map(item =>
+                item.id === id ? (
+                    // проверка на === 0 количество товара в заказе, если да удалить
+                        item.quantity > 1 ?
+                            {...item, quantity: item.quantity - 1} : null
+                    ) : item
+                )
+                .filter(Boolean) // Убираем `null`, чтобы удалить товар
         });
+    };
 
+    const countAllPrice = () => {
         const allPriceCount = order.length === 0 ? 0 : order.reduce((sum, item) => sum + (Number(item.quantity) * Number(item.price) ), 0);
-        setAllPrice(allPriceCount);
+        setAllPrice(allPriceCount.toFixed(2));
+    };
 
+    const countAllQuantity = () => {
         let quantity = 0;
         if (order.length > 0 ) {
             quantity = order.reduce((sum, item) => sum + Number(item.quantity), 0);
         }
         setQuantityAll(quantity);
+    };
+
+
+    // При изменении заказа - подсчет общего количества и всей суммы заказа
+    useEffect(() => {
+        countAllPrice();
+        countAllQuantity();
     }, [order]);
 
 
@@ -148,7 +128,9 @@ function AppShop() {
                     quantityAll={quantityAll}
                     allPrice={allPrice}
                     deleteGoodFromOrder={deleteGoodFromOrder}
-                    changeQuantity={changeQuantity}
+                    // changeQuantity={changeQuantity}
+                    incrementQuantity={incrementQuantity}
+                    decrementQuantity={decrementQuantity}
                 />
             }
             {
@@ -161,7 +143,9 @@ function AppShop() {
                   order={order}
                   allPrice={allPrice}
                   addToBasket={addToBasket}
-                  changeQuantity={changeQuantity}
+                  // changeQuantity={changeQuantity}
+                incrementQuantity={incrementQuantity}
+                    decrementQuantity={decrementQuantity}
             />
             <Footer />
         </>

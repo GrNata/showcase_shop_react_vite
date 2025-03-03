@@ -4,11 +4,11 @@ import {ImageLoader} from "./ImageLoader.jsx";
 
 export const GoodItem = ({
                              good,
-                             setOrder,
                              order = [],
                              addToBasket = Function.prototype,
-                             changeQuantity = Function.prototype,
-                             isSingle
+                             isSingle,
+                             incrementQuantity = Function.prototype,
+                             decrementQuantity = Function.prototype
                         }) => {
     const {id, title, price, category, description, rating, images} = good;
 
@@ -54,7 +54,7 @@ export const GoodItem = ({
                              // Проверяем, есть ли товар в корзине, если есть - отображаем кнопки для изменения количества
                         <>
                             <div className="d-flex align-items-center gap-4">
-                                <button type="button" className="btn btn-light cursor-pointer" onClick={() => changeQuantity(id, 'minus')}>
+                                <button type="button" className="btn btn-light cursor-pointer" onClick={() => decrementQuantity(id)}>
                                     -
                                 </button>
                                 <span>
@@ -62,7 +62,7 @@ export const GoodItem = ({
                                         order.find(item => item.id === id) ?.quantity
                                     }
                                 </span>
-                                <button type="button" className="btn btn-light cursor-pointer" onClick={() => changeQuantity(id, 'plus')}>
+                                <button type="button" className="btn btn-light cursor-pointer" onClick={() => incrementQuantity(id)}>
                                     +
                                 </button>
                             </div>
