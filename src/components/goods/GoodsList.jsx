@@ -1,14 +1,26 @@
 import {GoodItem} from "./GoodItem.jsx";
+import {useContext} from "react";
+import {ShopContext} from "../../context/ShopContext.jsx";
 
 export const GoodsList = (props) => {
-    const {
+
+    const  {
         goods = [],
-        setOrder,
         order,
+        setOrder,
         addToBasket = Function.prototype,
         incrementQuantity,
         decrementQuantity
-    } = props;
+    } = useContext(ShopContext);
+
+    // const {
+    //     goods = [],
+    //     setOrder,
+    //     order,
+    //     addToBasket = Function.prototype,
+    //     incrementQuantity,
+    //     decrementQuantity
+    // } = props;
 
     if (!goods.length) {
         return <h3>Error, goods is not</h3>
@@ -20,12 +32,12 @@ export const GoodsList = (props) => {
                 {goods.map((good) => (
                     <GoodItem key={good.id}
                               good={good}
-                              setOrder={setOrder}
-                              order={order}
-                              addToBasket={addToBasket}
+                              // setOrder={setOrder}
+                              // order={order}
+                              // addToBasket={addToBasket}
                               isSingle={goods.length === 1} // передаём инфо о количестве товаров
-                              incrementQuantity={incrementQuantity}
-                              decrementQuantity={decrementQuantity}
+                              // incrementQuantity={incrementQuantity}
+                              // decrementQuantity={decrementQuantity}
                     />
                 ))}
             </div>

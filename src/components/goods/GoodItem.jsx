@@ -1,16 +1,25 @@
 // import no_foto from '../assets/no_foto.jpg';
-import {useState} from "react";
+import {useContext, useState} from "react";
 import {ImageLoader} from "./ImageLoader.jsx";
+import {ShopContext} from "../../context/ShopContext.jsx";
 
 export const GoodItem = ({
                              good,
-                             order = [],
-                             addToBasket = Function.prototype,
+                             // order = [],
+                             // addToBasket = Function.prototype,
                              isSingle,
-                             incrementQuantity = Function.prototype,
-                             decrementQuantity = Function.prototype
+                             // incrementQuantity = Function.prototype,
+                             // decrementQuantity = Function.prototype
                         }) => {
     const {id, title, price, category, description, rating, images} = good;
+
+    const {
+        order = [],
+        addToBasket = Function.prototype,
+        // isSingle,
+        incrementQuantity = Function.prototype,
+        decrementQuantity = Function.prototype
+    } = useContext(ShopContext);
 
     const [isExpanded, setIsExpanded] = useState(false);
 

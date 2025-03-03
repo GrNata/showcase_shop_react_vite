@@ -17,13 +17,13 @@ export const fetchAllProducts = async () => {
 }
 
 export const fetchCategoriesList = async () => {
-    const res = await fetch(API_URL_CATEGORIES_LIST);
-    try {
-        return await res.json();
-    } catch (error) {
-        console.log("Ошибка загрузки данных - ", error);
-    }
-}
+        try {
+            const res = await fetch(API_URL_CATEGORIES_LIST);
+            return await res.json();
+        } catch (error) {
+            console.log("Ошибка загрузки данных - ", error);
+        }
+};
 
 export const fetchProductsByCategory = async (url) => {
     // console.log('URL - ', {url})

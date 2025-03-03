@@ -1,19 +1,37 @@
 import icon_basket from '../assets/basket_blue.jpg';
 import {Card} from "../components/Basket/Card.jsx";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {fetchProductsByCategory, fetchCategoriesList} from "../service/DummyService.jsx";
 import {CategoryItem} from "./CategoryItem.jsx";
 import {API_URL_BASE} from "../config.js";
+import {ShopContext} from "../context/ShopContext.jsx";
 
-export const Header = ({order,
-                           handelBasketShow=Function.prototype,
-                            quantityAll,
-                           categoriesList = [],
-                           setCategoriesList = [],
-                            setGoods
+export const Header = ({
+                           // order,
+                           // handelBasketShow=Function.prototype,
+                           //  quantityAll,
+                           // categoriesList = [],
+                           // // setCategoriesList = [],
+                           //  setGoods
                        }) => {
+    const {
+        order,
+        quantityAll,
+        categoriesList,
+        setGoods,
+        handelBasketShow,
+        setCategoriesList
+    } = useContext(ShopContext);
+
     // const [categoriesList, setCategoriesList] = useState([]);
     const [selected, setSelected] = useState(null);
+
+    useEffect(() => {
+
+        if (!categoriesList.length > 0) {
+            getCategoriesList();
+        }
+    }, [])
 
     const getCategoriesList = async () => {
         const list = await fetchCategoriesList();
@@ -28,7 +46,7 @@ export const Header = ({order,
                 isChecked: false
             }))
         ];
-        // console.log('categories - ', categories)
+        console.log('categories - ', categories)
         setCategoriesList(categories);
     }
 

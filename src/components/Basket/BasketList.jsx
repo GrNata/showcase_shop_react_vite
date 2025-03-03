@@ -1,15 +1,28 @@
 import {BasketItem} from "./BasketItem.jsx";
+import {useContext} from "react";
+import {ShopContext} from "../../context/ShopContext.jsx";
 
 export const BasketList = (props) => {
+
     const {
-        order = [],
-        handelBasketShow=Function.prototype,
+        order,
         quantityAll,
         allPrice,
-        deleteGoodFromOrder=Function.prototype,
-        incrementQuantity,
-        decrementQuantity
-    } = props;
+        handelBasketShow,
+        // deleteGoodFromOrder,
+        // incrementQuantity,
+        // decrementQuantity
+    } = useContext(ShopContext);
+
+    // const {
+    //     order = [],
+    //     handelBasketShow=Function.prototype,
+    //     quantityAll,
+    //     allPrice,
+    //     deleteGoodFromOrder=Function.prototype,
+    //     incrementQuantity,
+    //     decrementQuantity
+    // } = props;
 
 
     return (
@@ -27,10 +40,10 @@ export const BasketList = (props) => {
                 order.length ? order.map(item => (
                     <BasketItem
                         key={item.id} {...item}
-                        handelBasketShow={handelBasketShow}
-                        deleteGoodFromOrder={deleteGoodFromOrder}
-                        incrementQuantity={incrementQuantity}
-                        decrementQuantity={decrementQuantity}
+                        // handelBasketShow={handelBasketShow}
+                        // deleteGoodFromOrder={deleteGoodFromOrder}
+                        // incrementQuantity={incrementQuantity}
+                        // decrementQuantity={decrementQuantity}
                     />
                 )) : (
                     <>

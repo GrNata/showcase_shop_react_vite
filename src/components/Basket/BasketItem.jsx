@@ -1,15 +1,23 @@
 import delete_good from './delete_for_basket.png';
+import {useContext} from "react";
+import {ShopContext} from "../../context/ShopContext.jsx";
 
 
 export const BasketItem = (props) => {
+    const {
+        deleteGoodFromOrder=Function.prototype,
+        incrementQuantity = Function.prototype,
+        decrementQuantity = Function.prototype
+    } = useContext(ShopContext);
+
     const {
         id,
         title,
         price,
         quantity,
-        deleteGoodFromOrder=Function.prototype,
-        incrementQuantity = Function.prototype,
-        decrementQuantity = Function.prototype
+        // deleteGoodFromOrder=Function.prototype,
+        // incrementQuantity = Function.prototype,
+        // decrementQuantity = Function.prototype
     } = props;
 
     // console.log('BasketItem props - ', props)

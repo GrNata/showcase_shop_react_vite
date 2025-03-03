@@ -1,10 +1,17 @@
-import {useEffect} from "react";
+import {useContext, useEffect} from "react";
+import {ShopContext} from "../../context/ShopContext.jsx";
 
 export const Alert = (props) => {
+
     const {
-        title = '',
+        alertTitle,
         closeAlert = Function.prototype
-    } = props;
+    } = useContext(ShopContext);
+
+    // const {
+    //     // title = '',
+    //     // closeAlert = Function.prototype
+    // } = props;
 
 
     // Будем скрывать подсказку по таймеру
@@ -14,14 +21,14 @@ export const Alert = (props) => {
         return () => {
             clearTimeout(timerId);
         }
-    }, [title]);
+    }, [alertTitle]);
 
     return (
         // <div className="toast  show fade custom-toast-animation position-fixed start-50 translate-middle-x"
         <div className="toast  show fade position-fixed  "
              role="alert" aria-live="assertive" aria-atomic="true">
             <div className="toast-body">
-                <p>{title}</p>
+                <p>{alertTitle}</p>
                  has been added to the cart.
             </div>
         </div>
