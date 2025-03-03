@@ -1,13 +1,17 @@
 import {GoodItem} from "./GoodItem.jsx";
+import {useContext} from "react";
+import {ShopContext} from "../../context/Context.jsx";
 
 export const GoodsList = (props) => {
     const {
         goods = [],
-        setOrder,
-        order,
-        addToBasket = Function.prototype,
+        // setOrder,
+        // order,
+        // addToBasket = Function.prototype,
         changeQuantity
     } = props;
+
+    const {order} = useContext(ShopContext);
 
     if (!goods.length) {
         return <h3>Error, goods is not</h3>
@@ -20,9 +24,9 @@ export const GoodsList = (props) => {
                 {goods.map((good) => (
                     <GoodItem key={good.id}
                               good={good}
-                              setOrder={setOrder}
-                              order={order}
-                              addToBasket={addToBasket}
+                              // setOrder={setOrder}
+                              // order={order}
+                              // addToBasket={addToBasket}
                               changeQuantity={changeQuantity}
                               isSingle={goods.length === 1} // передаём инфо о количестве товаров
                     />

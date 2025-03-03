@@ -1,15 +1,19 @@
 import {BasketItem} from "./BasketItem.jsx";
+import {useContext} from "react";
+import {ShopContext} from "../../context/Context.jsx";
+
 
 export const BasketList = (props) => {
     const {
-        order = [],
+        // order = [],
         handelBasketShow=Function.prototype,
-        quantityAll,
+        // quantityAll,
         allPrice,
         deleteGoodFromOrder=Function.prototype,
         changeQuantity=Function.prototype
     } = props;
 
+    const {order, quantityAll} = useContext(ShopContext);
 
     return (
         <ol className="list-group  basket-list backgraund-basket">

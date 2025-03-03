@@ -1,18 +1,23 @@
 // import no_foto from '../assets/no_foto.jpg';
-import {useState} from "react";
+import {useContext, useState} from "react";
 import {ImageLoader} from "./ImageLoader.jsx";
+import {ShopContext} from "../../context/Context.jsx";
+import {reducerShop} from "../../reducer/Reducer.jsx";
 
 export const GoodItem = ({
                              good,
-                             setOrder,
-                             order = [],
-                             addToBasket = Function.prototype,
+                             // setOrder,
+                             // order = [],
+                             // addToBasket = Function.prototype,
                              changeQuantity = Function.prototype,
                              isSingle
                         }) => {
     const {id, title, price, category, description, rating, images} = good;
 
+    const {order, addToBasket} = useContext(ShopContext);
+
     const [isExpanded, setIsExpanded] = useState(false);
+
 
     return (
         // <div key={id} className="col-12 col-sm-6 col-lg-3">

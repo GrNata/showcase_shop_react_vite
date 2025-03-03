@@ -3,6 +3,7 @@ import './App.css'
 import AppShop from "./components/AppShop.jsx";
 import {LoginForm} from "./components/login/LoginForm.jsx";
 import {useState} from "react";
+import {ContextProviderShop} from "./context/Context.jsx";
 
 function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -22,9 +23,12 @@ function App() {
 
   return (
     <>
-        {isAuthenticated ? <AppShop /> : <LoginForm onLogin={handlerLogin} />}
+        {/*{isAuthenticated ? <AppShop /> : <LoginForm onLogin={handlerLogin} />}*/}
         {/*<AppShop />*/}
 
+        <ContextProviderShop>
+            <AppShop />
+        </ContextProviderShop>
     </>
   )
 }

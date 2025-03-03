@@ -3,15 +3,16 @@ import {fetchAllProducts, fetchSearchProducts} from "../service/DummyService.jsx
 import {Preloader} from "./Preloader.jsx";
 import {GoodsList} from "./goods/GoodsList.jsx";
 import {SearchGoods} from "./Filter/SearchGoods.jsx";
+import {ShopContext} from "../context/Context.jsx";
 
 // function Shop() {
 function Shop({
                   goods = [],
                   setGoods,
-                  setOrder,
-                  order,
+                  // setOrder,
+                  // order,
                   // allPrice = 0,
-                  addToBasket=Function.prototype,
+                  // addToBasket=Function.prototype,
                   changeQuantity
               }) {
 
@@ -20,6 +21,8 @@ function Shop({
     const [totalPosition, setTotalPosition] = useState(0);
     const [loading, setLoading] = useState(true);
     const [searchProduct, setSearchProduct] = useState('');
+
+    const {order} = useState(ShopContext);
 
 
     const handelSearchGoods = async (input) => {
@@ -55,9 +58,9 @@ function Shop({
                         <SearchGoods handelSearchGoods={handelSearchGoods} searchProduct={searchProduct} setSearchProduct={setSearchProduct}/>
                         <GoodsList
                             goods={goods}
-                            setOrder={setOrder}
-                            order={order}
-                            addToBasket={addToBasket}
+                            // setOrder={setOrder}
+                            // order={order}
+                            // addToBasket={addToBasket}
                             changeQuantity={changeQuantity}
                         />
                     </>

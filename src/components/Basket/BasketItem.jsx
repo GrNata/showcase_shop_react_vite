@@ -1,4 +1,6 @@
 import delete_good from './delete_for_basket.png';
+import {useContext} from "react";
+// import {ShopContext} from "../../context/Context.jsx";
 
 
 export const BasketItem = (props) => {
@@ -12,6 +14,9 @@ export const BasketItem = (props) => {
     } = props;
 
     // console.log('BasketItem props - ', props)
+
+    // const {example} = useContext(ShopContext);
+    // console.log('example: ', example)
 
     return (
         <>

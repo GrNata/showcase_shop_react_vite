@@ -1,13 +1,14 @@
 import icon_basket from '../assets/basket_blue.jpg';
 import {Card} from "../components/Basket/Card.jsx";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {fetchProductsByCategory, fetchCategoriesList} from "../service/DummyService.jsx";
 import {CategoryItem} from "./CategoryItem.jsx";
 import {API_URL_BASE} from "../config.js";
+import {ShopContext} from "../context/Context.jsx";
 
 export const Header = ({order,
                            handelBasketShow=Function.prototype,
-                            quantityAll,
+                            // quantityAll,
                            categoriesList = [],
                            setCategoriesList = [],
                             setGoods
@@ -73,7 +74,10 @@ export const Header = ({order,
                         <a className="navbar-brand mx-auto text-center" href="#">Витрина - интернет магазина</a>
 
                         {/* Корзина справа */}
-                        <Card quantity={quantityAll} order={order} handelBasketShow={handelBasketShow} />
+                        <Card
+                            // quantity={quantityAll}
+                            // order={order}
+                            handelBasketShow={handelBasketShow} />
                     </div>
                 </nav>
 
