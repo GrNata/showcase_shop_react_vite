@@ -73,8 +73,7 @@ export const ShopReducer =(state, {type, payload}) => {
         case 'INCREMENT_QUANTITY': {
             const incOrder = state.order.map(item =>
                 item.id === payload ? {...item, quantity: item.quantity + 1} : item
-            )
-            console.log('incOrder - ', incOrder)
+            );
             return {
                 ...state,
                 order: incOrder

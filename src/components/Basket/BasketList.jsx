@@ -2,28 +2,14 @@ import {BasketItem} from "./BasketItem.jsx";
 import {useContext} from "react";
 import {ShopContext} from "../../context/ShopContext.jsx";
 
-export const BasketList = (props) => {
+export const BasketList = () => {
 
     const {
         order,
         quantityAll,
         allPrice,
         handelBasketShow,
-        // deleteGoodFromOrder,
-        // incrementQuantity,
-        // decrementQuantity
     } = useContext(ShopContext);
-
-    // const {
-    //     order = [],
-    //     handelBasketShow=Function.prototype,
-    //     quantityAll,
-    //     allPrice,
-    //     deleteGoodFromOrder=Function.prototype,
-    //     incrementQuantity,
-    //     decrementQuantity
-    // } = props;
-
 
     return (
         <ol className="list-group  basket-list backgraund-basket">
@@ -40,10 +26,6 @@ export const BasketList = (props) => {
                 order.length ? order.map(item => (
                     <BasketItem
                         key={item.id} {...item}
-                        // handelBasketShow={handelBasketShow}
-                        // deleteGoodFromOrder={deleteGoodFromOrder}
-                        // incrementQuantity={incrementQuantity}
-                        // decrementQuantity={decrementQuantity}
                     />
                 )) : (
                     <>

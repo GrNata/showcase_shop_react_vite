@@ -6,11 +6,8 @@ export const CategoryItem = (props) => {
         checkedCategory = Function.prototype,
         id,
         category,
-        // setSelected = Function.prototype,
         selected
     } = props;
-
-    // const [selected, setSelected] = useState(null);
 
     return (
         <div className="form-radio-item">

@@ -6,28 +6,16 @@ import {CategoryItem} from "./CategoryItem.jsx";
 import {API_URL_BASE} from "../config.js";
 import {ShopContext} from "../context/ShopContext.jsx";
 
-export const Header = ({
-                           // order,
-                           // handelBasketShow=Function.prototype,
-                           //  quantityAll,
-                           // categoriesList = [],
-                           // // setCategoriesList = [],
-                           //  setGoods
-                       }) => {
+export const Header = () => {
     const {
-        order,
-        quantityAll,
         categoriesList,
         setGoods,
-        handelBasketShow,
         setCategoriesList
     } = useContext(ShopContext);
 
-    // const [categoriesList, setCategoriesList] = useState([]);
     const [selected, setSelected] = useState(null);
 
     useEffect(() => {
-
         if (!categoriesList.length > 0) {
             getCategoriesList();
         }
@@ -35,7 +23,6 @@ export const Header = ({
 
     const getCategoriesList = async () => {
         const list = await fetchCategoriesList();
-        // console.log('list - ', list)
 
         const categories = [
             {id: 1, category: 'All', url: API_URL_BASE, isChecked: true},
@@ -46,12 +33,10 @@ export const Header = ({
                 isChecked: false
             }))
         ];
-        console.log('categories - ', categories)
         setCategoriesList(categories);
     }
 
     const checkedCategory = async (id) => {
-        console.log('checkedCategory id - ', id, ' isSelected - ', selected)
         const updateList = categoriesList.map((item) => ({
             ...item,
             isChecked: item.id === id ? !item.isChecked : false, // Сбрасываем все, кроме текущего
@@ -91,7 +76,7 @@ export const Header = ({
                         <a className="navbar-brand mx-auto text-center" href="#">Витрина - интернет магазина</a>
 
                         {/* Корзина справа */}
-                        <Card quantity={quantityAll} order={order} handelBasketShow={handelBasketShow} />
+                        <Card   />
                     </div>
                 </nav>
 

@@ -14,13 +14,8 @@ export const BasketItem = (props) => {
         id,
         title,
         price,
-        quantity,
-        // deleteGoodFromOrder=Function.prototype,
-        // incrementQuantity = Function.prototype,
-        // decrementQuantity = Function.prototype
+        quantity
     } = props;
-
-    // console.log('BasketItem props - ', props)
 
     return (
         <>
@@ -33,7 +28,6 @@ export const BasketItem = (props) => {
                             {/*<button type="button" className="btn btn-light cursor-pointer" onClick={() => changeQuantity(id, 'minus')}>-</button>*/}
                             <button type="button" className="btn btn-light cursor-pointer" onClick={() => decrementQuantity(id)}>-</button>
                             <span>{quantity}</span>
-                            {/*<button type="button" className="btn btn-light cursor-pointer" onClick={() => changeQuantity(id, 'plus')}>+</button>*/}
                             <button type="button" className="btn btn-light cursor-pointer" onClick={() => incrementQuantity(id)}>+</button>
                         </div>
                     </div>

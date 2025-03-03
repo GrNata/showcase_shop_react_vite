@@ -5,18 +5,13 @@ import {ShopContext} from "../../context/ShopContext.jsx";
 
 export const GoodItem = ({
                              good,
-                             // order = [],
-                             // addToBasket = Function.prototype,
-                             isSingle,
-                             // incrementQuantity = Function.prototype,
-                             // decrementQuantity = Function.prototype
+                             isSingle
                         }) => {
     const {id, title, price, category, description, rating, images} = good;
 
     const {
         order = [],
         addToBasket = Function.prototype,
-        // isSingle,
         incrementQuantity = Function.prototype,
         decrementQuantity = Function.prototype
     } = useContext(ShopContext);

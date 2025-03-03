@@ -1,9 +1,10 @@
 import icon_basket from "../../assets/basket_blue.jpg";
+import {useContext} from "react";
+import {ShopContext} from "../../context/ShopContext.jsx";
 
-export const Card = (props) => {
-    const {quantity = 0, order, handelBasketShow = Function.prototype} = props;
+export const Card = () => {
 
-    // console.log('Card - ', props)
+    const {quantityAll, handelBasketShow} = useContext(ShopContext);
 
     return (
         <div
@@ -12,9 +13,9 @@ export const Card = (props) => {
         >
             <img src={icon_basket} alt="Basket Icon" className="basket-icon"/>
             {
-                quantity >= 0 ?
+                quantityAll >= 0 ?
                     <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                        {quantity} {/* Количество товаров */}
+                        {quantityAll} {/* Количество товаров */}
                     </span>
                     :
                     null
